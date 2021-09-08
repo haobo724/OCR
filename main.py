@@ -5,6 +5,7 @@
 import easyocr
 import cv2
 import time
+from green_point_track import split_img
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
 
@@ -22,8 +23,7 @@ def print_hi(name):
     img = cv2.imread('images/cameraWEB31.JPG',0)
     ret, img = cv2.threshold(img, 120, 255, cv2.THRESH_BINARY +
                                  cv2.THRESH_OTSU)
-    cv2.imshow("Image", img)
-    cv2.waitKey(0)
+    split_img(img)
     results = reader.readtext(img, detail=1, paragraph=False)  # Set detail to 0 for simple text output
     # Paragraph=True will combine all results making it easy to capture it in a dataframe.
     print(results)
